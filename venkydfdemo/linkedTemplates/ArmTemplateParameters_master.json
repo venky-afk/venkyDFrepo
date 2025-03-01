@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "venkydfdemo"
+		},
+		"AzureSqlLS_password": {
+			"value": ""
+		},
+		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
+			"value": "https://venkydatalake2.blob.core.windows.net/"
+		},
+		"AzureBlobStorage2_properties_typeProperties_serviceEndpoint": {
+			"value": "https://venkyblobstorage.blob.core.windows.net/"
+		},
+		"AzureBlobStorage3_properties_typeProperties_serviceEndpoint": {
+			"value": "https://venkyblobstorage.blob.core.windows.net/"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://venkydatalake2.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"value": "https://venkydatalake2.dfs.core.windows.net/"
+		},
+		"AzureSqlLS_properties_typeProperties_server": {
+			"value": "sqlservervenky.database.windows.net"
+		},
+		"AzureSqlLS_properties_typeProperties_database": {
+			"value": "Sqldatabasevenky"
+		},
+		"AzureSqlLS_properties_typeProperties_userName": {
+			"value": "venky"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "@{linkedService().BaseUrl}"
+		},
+		"vazbsparametrs_properties_typeProperties_serviceEndpoint": {
+			"value": "https://venkyblobstorage.blob.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

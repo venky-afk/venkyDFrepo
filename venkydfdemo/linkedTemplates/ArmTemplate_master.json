@@ -1,0 +1,139 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "venkydfdemo"
+		},
+		"AzureSqlLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlLS'"
+		},
+		"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://venkydatalake2.blob.core.windows.net/"
+		},
+		"AzureBlobStorage2_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://venkyblobstorage.blob.core.windows.net/"
+		},
+		"AzureBlobStorage3_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://venkyblobstorage.blob.core.windows.net/"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://venkydatalake2.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://venkydatalake2.dfs.core.windows.net/"
+		},
+		"AzureSqlLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sqlservervenky.database.windows.net"
+		},
+		"AzureSqlLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Sqldatabasevenky"
+		},
+		"AzureSqlLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "venky"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{linkedService().BaseUrl}"
+		},
+		"vazbsparametrs_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://venkyblobstorage.blob.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "venkydfdemo_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureSqlLS_password": {
+						"value": "[parameters('AzureSqlLS_password')]"
+					},
+					"AzureSqlLS_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlLS_properties_typeProperties_server')]"
+					},
+					"AzureSqlLS_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlLS_properties_typeProperties_database')]"
+					},
+					"AzureSqlLS_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlLS_properties_typeProperties_userName')]"
+					},
+					"HttpServer1_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
+					},
+					"AzureBlobStorage1_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_serviceEndpoint')]"
+					},
+					"AzureBlobStorage2_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('AzureBlobStorage2_properties_typeProperties_serviceEndpoint')]"
+					},
+					"AzureBlobStorage3_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('AzureBlobStorage3_properties_typeProperties_serviceEndpoint')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage2_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]"
+					},
+					"vazbsparametrs_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('vazbsparametrs_properties_typeProperties_serviceEndpoint')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "venkydfdemo_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'venkydfdemo_ArmTemplate_0')]"
+			]
+		}
+	]
+}
