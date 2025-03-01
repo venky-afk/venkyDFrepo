@@ -1,0 +1,109 @@
+{
+	"name": "HTTPtoLAKEusingBaseRealtiveUrl",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "httprelativeurlds",
+						"type": "DatasetReference",
+						"parameters": {
+							"BaseUrl": {
+								"value": "@variables('sourceBaseurl')",
+								"type": "Expression"
+							},
+							"RealtiveUrl": {
+								"value": "@variables('sourceRelativeurl')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "httpoutptudataset",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sourceRelativeurl",
+					"value": "codeforamerica/ohana-api/refs/heads/master/data/sample-csv/mail_addresses.csv"
+				}
+			}
+		],
+		"variables": {
+			"sourceBaseurl": {
+				"type": "String",
+				"defaultValue": "https://raw.githubusercontent.com/"
+			},
+			"sourceRelativeurl": {
+				"type": "String",
+				"defaultValue": "codeforamerica/ohana-api/refs/heads/master/data/sample-csv/holiday_schedules.csv"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-02-25T08:09:08Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

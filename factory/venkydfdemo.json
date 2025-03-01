@@ -1,0 +1,15 @@
+{
+	"name": "venkydfdemo",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned,UserAssigned",
+		"principalId": "2ed87523-9e28-4a71-b1a7-f0cfe90276f8",
+		"tenantId": "2388f26c-b692-4073-83d5-b8be2e58d10a",
+		"userAssignedIdentities": {
+			"/subscriptions/a61081ea-48d0-4f20-87a2-29ad45bf155d/resourcegroups/aresourcegroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/Manage_identity": {
+				"clientId": "169f7116-20e0-476b-aa41-392df78e6e59",
+				"principalId": "94af6148-ed19-4a0d-8e7a-72332a721ad4"
+			}
+		}
+	}
+}

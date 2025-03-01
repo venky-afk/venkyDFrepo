@@ -1,0 +1,16 @@
+{
+	"name": "AzureBlobStorage3",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://venkyblobstorage.blob.core.windows.net/",
+			"accountKind": "StorageV2",
+			"credential": {
+				"referenceName": "inputblobstorage",
+				"type": "CredentialReference"
+			}
+		}
+	}
+}

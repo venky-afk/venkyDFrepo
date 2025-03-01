@@ -1,0 +1,15 @@
+{
+	"name": "AzureDataLakeStorage2",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://venkydatalake2.dfs.core.windows.net/",
+			"credential": {
+				"referenceName": "outputdatalake",
+				"type": "CredentialReference"
+			}
+		}
+	}
+}

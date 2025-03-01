@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlDataSet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "demo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
